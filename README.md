@@ -1,4 +1,8 @@
-# Devise Authentication system with Rails 5
+# Supervisor Watcher  
+
+[![Build Status](https://travis-ci.org/dskoda1/rails-supervisor-watcher.svg?branch=master)](https://travis-ci.org/dskoda1/rails-supervisor-watcher)  
+
+
 
 Almost every web application require user authentication. This is a boilerplate for user authentication with devise, Rails 5 and Postgresql.
 
