@@ -1,0 +1,14 @@
+language: ruby
+
+services:
+  - postgresql
+  
+rvm:
+    - 2.3.0
+    
+env:
+    - RAILS_ENV=test
+    
+before_script:
+    - sudo sudo -u postgres psql -c "CREATE USER username SUPERUSER PASSWORD 'password';"
+    - bundle exec rails db:reset
