@@ -1,26 +1,19 @@
 <h1>Supervisors</h1>
-<table class="table table-striped table-hover table-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Hostname</th>
-      <th>Port</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<!--<table class="table table-striped table-hover table-bordered">-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--      <th>Name</th>-->
+<!--      <th>Hostname</th>-->
+<!--      <th>Port</th>-->
+<!--      <th colspan="3"></th>-->
+<!--    </tr>-->
+<!--  </thead>-->
 
-  <tbody>
-    <% @supervisors.each do |supervisor| %>
-      <tr>
-        <td><%= supervisor.name %></td>
-        <td><%= supervisor.hostname %></td>
-        <td><%= supervisor.port %></td>
-        <td><%= link_to 'Show', supervisor %></td>
-        <td><%= link_to 'Edit', edit_supervisor_path(supervisor) %></td>
-        <td><%= link_to 'Destroy', supervisor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <!--<tbody>-->
+<% @supervisors.each do |supervisor| %>
+  <%= render 'supervisors/show', supervisor: supervisor %>
+<% end %>
+<!--  </tbody>-->
+<!--</table>-->
 
 <br>

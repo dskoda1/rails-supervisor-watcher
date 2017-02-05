@@ -2,6 +2,8 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+require 'webmock/minitest'
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
@@ -15,11 +17,12 @@ class ActiveSupport::TestCase
   def get_supervisor(user, name = 'localhost')
     Supervisor.new(name: name,
                        hostname: name,
-                       port: '4000',
+                       port: '8082',
                        user: user)
   end
   
   def logout
     delete destroy_user_session_path
   end
+  
 end

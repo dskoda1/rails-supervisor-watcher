@@ -10,11 +10,13 @@ class SupervisorsController < ApplicationController
   # GET /supervisors/1
   # GET /supervisors/1.json
   def show
+    render 'supervisors/_show',  :locals => {:supervisor => @supervisor}
   end
 
   # GET /supervisors/new
   def new
     @supervisor = Supervisor.new
+    
   end
 
   # GET /supervisors/1/edit

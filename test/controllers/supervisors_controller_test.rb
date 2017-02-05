@@ -6,6 +6,10 @@ class SupervisorsControllerTest < ActionDispatch::IntegrationTest
     @supervisor = get_supervisor(@user)
     @supervisor.save
     assert(@supervisor.persisted?)
+    stub_request(:post, "http://localhost:8082/RPC2").
+      with(:body => "<?xml version=\"1.0\" ?><methodCall><methodName>supervisor.getAllProcessInfo</methodName><params/></methodCall>\n",
+       :headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Connection'=>'keep-alive', 'Content-Length'=>'110', 'Content-Type'=>'text/xml; charset=utf-8', 'User-Agent'=>'XMLRPC::Client (Ruby 2.3.0)'}).
+      to_return(:body => "<?xml version='1.0'?>\n<methodResponse>\n<params>\n<param>\n<value><array><data>\n<value><struct>\n<member>\n<name>description</name>\n<value><string>pid 7263, uptime 0:00:38</string></value>\n</member>\n<member>\n<name>pid</name>\n<value><int>7263</int></value>\n</member>\n<member>\n<name>stderr_logfile</name>\n<value><string>/tmp/sleep-stderr---supervisor-J7jOMO.log</string></value>\n</member>\n<member>\n<name>stop</name>\n<value><int>0</int></value>\n</member>\n<member>\n<name>logfile</name>\n<value><string>/tmp/sleep-stdout---supervisor-Yh9c2j.log</string></value>\n</member>\n<member>\n<name>exitstatus</name>\n<value><int>0</int></value>\n</member>\n<member>\n<name>spawnerr</name>\n<value><string></string></value>\n</member>\n<member>\n<name>now</name>\n<value><int>1486317559</int></value>\n</member>\n<member>\n<name>group</name>\n<value><string>sleep</string></value>\n</member>\n<member>\n<name>name</name>\n<value><string>sleep</string></value>\n</member>\n<member>\n<name>statename</name>\n<value><string>RUNNING</string></value>\n</member>\n<member>\n<name>start</name>\n<value><int>1486317521</int></value>\n</member>\n<member>\n<name>state</name>\n<value><int>20</int></value>\n</member>\n<member>\n<name>stdout_logfile</name>\n<value><string>/tmp/sleep-stdout---supervisor-Yh9c2j.log</string></value>\n</member>\n</struct></value>\n</data></array></value>\n</param>\n</params>\n</methodResponse>\n" )
   end
   
   def params
