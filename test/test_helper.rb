@@ -7,5 +7,18 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
-
+  def login
+    @user = users(:user1)
+    post user_session_path, params: { 'user[email]' => @user.email, 'user[password]' => 'password' }
+  end
+  
+  def get_supervisor(user)
+    s = supervisors(:localhost)
+    s.user = user
+    s
+  end
+  
+  def logout
+    delete destroy_user_session_path
+  end
 end
