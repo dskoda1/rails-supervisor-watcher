@@ -12,8 +12,8 @@ class SupervisorsControllerTest < ActionDispatch::IntegrationTest
     { supervisor: { 
         hostname: @supervisor.hostname, 
         name: @supervisor.name, 
-        port: @supervisor.port, 
-        user_id: @supervisor.user_id  } }
+        port: @supervisor.port
+      } }
   end
 
   test "should get index" do
@@ -38,23 +38,13 @@ class SupervisorsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create supervisor" do
+  test "should create supervisor, assigning user from session" do
     assert_difference('Supervisor.count') do
       post supervisors_url, 
         params: params
     end
     assert_redirected_to supervisor_url(Supervisor.last)
   end
-
-  test "should not create supervisor missing user" do
-    assert_no_difference('Supervisor.count') do
-      changed_params = params
-      changed_params[:supervisor][:user_id] = nil
-      post supervisors_url, params: changed_params
-    end
-    assert_response 400
-  end  
-  
 
   test "should show supervisor" do
     get supervisor_url(@supervisor)

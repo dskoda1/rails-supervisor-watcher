@@ -73,6 +73,8 @@ class SupervisorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supervisor_params
-      params.require(:supervisor).permit(:user_id, :name, :hostname, :port)
+      ret = params.require(:supervisor).permit(:name, :hostname, :port)
+      ret[:user_id] = current_user.id
+      ret
     end
 end
