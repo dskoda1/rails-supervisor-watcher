@@ -4,6 +4,8 @@ class SupervisorsControllerTest < ActionDispatch::IntegrationTest
   def setup
     login
     @supervisor = get_supervisor(@user)
+    @supervisor.save
+    assert(@supervisor.persisted?)
   end
   
   def params
@@ -17,6 +19,17 @@ class SupervisorsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get supervisors_url
     assert_equal(assigns(:supervisors), [@supervisor])
+    assert_response :success
+  end
+  
+  test "should not get another users supervisors" do
+    # Create a supervisor for another user
+    other_user = users(:user2)
+    sup = get_supervisor(other_user, 'otherhost')
+    sup.save!
+
+    get supervisors_url
+    assert_equal( [@supervisor], assigns(:supervisors))
     assert_response :success
   end
 

@@ -1,10 +1,10 @@
 class SupervisorsController < ApplicationController
+  before_action :set_scope
   before_action :set_supervisor, only: [:show, :edit, :update, :destroy]
-
   # GET /supervisors
   # GET /supervisors.json
   def index
-    @supervisors = Supervisor.all
+    @supervisors = @scope.all
   end
 
   # GET /supervisors/1
@@ -64,7 +64,11 @@ class SupervisorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_supervisor
-      @supervisor = Supervisor.find(params[:id])
+      @supervisor = @scope.find(params[:id])
+    end
+
+    def set_scope
+      @scope = Supervisor.where(user_id: current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

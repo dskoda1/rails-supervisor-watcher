@@ -12,10 +12,11 @@ class ActiveSupport::TestCase
     post user_session_path, params: { 'user[email]' => @user.email, 'user[password]' => 'password' }
   end
   
-  def get_supervisor(user)
-    s = supervisors(:localhost)
-    s.user = user
-    s
+  def get_supervisor(user, name = 'localhost')
+    Supervisor.new(name: name,
+                       hostname: name,
+                       port: '4000',
+                       user: user)
   end
   
   def logout

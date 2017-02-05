@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-localhost:
-  user: user1
-  name: localhost 
-  hostname: localhost
-  port: 8080
+# localhost:
+#   name: localhost 
+#   hostname: localhost
+#   port: 8080
 
-# two:
-#   user: two
-#   name: MyString
-#   hostname: MyString
-#   port: 1
+# otherhost:
+#   name: otherhost
+#   hostname: otherhost
+#   port: 4000
